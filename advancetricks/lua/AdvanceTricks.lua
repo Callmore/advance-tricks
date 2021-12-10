@@ -683,7 +683,7 @@ local function tutorialThinker()
     if tutorialState == 0 then
         -- Pre first trick
 
-        if not P_IsObjectOnGround(p.mo) and at.airTics >= 5 then
+        if canPlayerTrick(p) then
             tutorialState = 1 -- ADVANCE
             fadeInTasks()
         end
