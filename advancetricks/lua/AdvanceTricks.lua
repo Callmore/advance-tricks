@@ -18,8 +18,8 @@
 -- direction, potenionally recovering from a bad bump or launch, or helping you
 -- take turns tighter.
 
--- 1.0
-rawset(_G, "ADVANCETRICKS", 1*FRACUNIT + 0)
+-- 1.1
+rawset(_G, "ADVANCETRICKS", 1*FRACUNIT + 1)
 
 freeslot("S_ADVANCETRICKS_INDICATOR")
 states[S_ADVANCETRICKS_INDICATOR] = {SPR_FWRK, A|FF_FULLBRIGHT|FF_ANIMATE, -1, nil, 3, 2, S_ADVANCETRICKS_INDICATOR}
