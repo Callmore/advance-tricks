@@ -209,7 +209,7 @@ local function doTrick(p)
 
     local btns, upbtn, downbtn = getTrickButtons(p)
 
-    if btns & upbtn then
+    if btns & upbtn and shift == 0 then
         -- UP TRICK
 
         is_down_or_up_trick = true
@@ -220,7 +220,7 @@ local function doTrick(p)
         p.advTricks.didUpTrick = true
 
         p.mo.momx, p.mo.momy, p.mo.momz = calculateUpTrickMomentum(p, angle)
-    elseif btns & downbtn then
+    elseif btns & downbtn and shift == 0 then
         -- DOWN TRICK
 
         is_down_or_up_trick = true
