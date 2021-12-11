@@ -26,6 +26,15 @@ states[S_ADVANCETRICKS_INDICATOR] = {SPR_FWRK, A|FF_FULLBRIGHT|FF_ANIMATE, -1, n
 
 -- Console variables
 
+-- Toggle to disable advance tricks
+-- I mean sure I guess...
+local cv_tricksEnabled = CV_RegisterVar{
+    name = "advt_enabled",
+    defaultvalue = "Yes",
+    flags = CV_NETVAR,
+    PossibleValue = CV_YesNo
+}
+
 -- Infinite tricks toggles being able to trick endlessly in mid-air.
 -- Someone suguested this in VC and I was like "okay".
 local cv_infiniteTricks = CV_RegisterVar{
@@ -89,7 +98,8 @@ end
 -- Check if a player is allowed to trick, returns true if they can,
 -- returns false otherwise
 local function canPlayerTrick(p)
-    return (p.kartstuff[k_squishedtimer] <= 0
+    return (cv_tricksEnabled.value == 1
+        and p.kartstuff[k_squishedtimer] <= 0
         and p.kartstuff[k_spinouttimer] <= 0
         and p.kartstuff[k_respawn] <= 0
         and p.deadtimer <= 0
@@ -770,6 +780,7 @@ local function tutorialHud(v, p)
     if tutorialState == nil and tutInstructionFadeTime == 0 then return end
     if p ~= consoleplayer then return end
     if p.spectator then return end
+    if cv_tricksEnabled.value == 0 then return end -- :(
 
     -- Im pulling in some extra code for fading
 
